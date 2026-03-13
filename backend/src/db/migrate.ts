@@ -14,16 +14,17 @@ async function migrate() {
       created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
 
-    CREATE TABLE IF NOT EXISTS participants (
-      id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-      cohort_id   UUID NOT NULL REFERENCES cohorts(id) ON DELETE CASCADE,
-      email       TEXT NOT NULL,
-      first_name  TEXT,
-      last_name   TEXT,
-      created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-      UNIQUE(cohort_id, email)
-    );
-
+CREATE TABLE IF NOT EXISTS participants (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cohort_id   UUID NOT NULL REFERENCES cohorts(id) ON DELETE CASCADE,
+  email       TEXT NOT NULL,
+  first_name  TEXT,
+  last_name   TEXT,
+  status      TEXT NOT NULL DEFAULT 'active'          -- ADD THIS LINE
+              CHECK (status IN ('active', 'dropped')), -- AND THIS LINE
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE(cohort_id, email)
+);
     CREATE TABLE IF NOT EXISTS survey_tokens (
       id             UUID PRIMARY KEY DEFAULT gen_random_uuid(),
       participant_id UUID NOT NULL REFERENCES participants(id) ON DELETE CASCADE,
