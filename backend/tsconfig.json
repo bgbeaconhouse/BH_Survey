@@ -1,19 +1,9 @@
 {
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "types": ["node"],
     "baseUrl": ".",
     "paths": {
       "@beacon/shared": ["../shared/src/index.ts"]
     }
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "../shared"]
+  }
 }
