@@ -25,20 +25,21 @@ export function SurveyPage() {
       setStatus("error");
       return;
     }
- api.survey.validate(token).then((result) => {
-  if (result.error) {
-    setErrorMsg(result.error);
-    setStatus("error");
-  } else if (result.data) {
-    setSurveyInfo(result.data);
-    if (result.data.participant.firstName) setFirstName(result.data.participant.firstName);
-    setStatus("ready");
-  }
-});
+    api.survey.validate(token).then((result) => {
+      if (result.error) {
+        setErrorMsg(result.error);
+        setStatus("error");
+      } else if (result.data) {
+        setSurveyInfo(result.data);
+        if (result.data.participant.firstName) setFirstName(result.data.participant.firstName);
+        if (result.data.participant.lastName) setLastName(result.data.participant.lastName);
+        setStatus("ready");
+      }
+    });
   }, [token]);
 
- const allQuestions = surveyInfo?.phase === "post" ? POST_SURVEY_QUESTIONS : PRE_SURVEY_QUESTIONS;
-const visibleQuestions = allQuestions.filter((q) => {
+  const allQuestions = surveyInfo?.phase === "post" ? POST_SURVEY_QUESTIONS : PRE_SURVEY_QUESTIONS;
+  const visibleQuestions = allQuestions.filter((q) => {
     if (!q.conditional) return true;
     return answers[q.conditional.id] === q.conditional.value;
   });

@@ -93,7 +93,7 @@ export type ApiResult<T> = ApiResponse<T> | ApiError;
 export interface TokenValidationResult {
   valid: boolean;
   phase: SurveyPhase;
-  participant: Pick<Participant, "id" | "firstName" | "email">;
+ participant: Pick<Participant, "id" | "firstName" | "lastName" | "email">;
   cohort: Pick<Cohort, "id" | "name">;
 }
 

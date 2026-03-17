@@ -21,6 +21,7 @@ surveyRouter.get("/validate", async (req, res) => {
         st.used_at,
         p.id AS participant_id,
         p.first_name,
+        p.last_name,
         p.email,
         c.id AS cohort_id,
         c.name AS cohort_name
@@ -54,6 +55,7 @@ surveyRouter.get("/validate", async (req, res) => {
         participant: {
           id: row.participant_id,
           firstName: row.first_name,
+          lastName: row.last_name,
           email: row.email,
         },
         cohort: {

@@ -877,6 +877,7 @@ console.log("post answer keys:", Object.keys(post.answers));
 }
 // ─── ThankYouPage ──────────────────────────────────────────────
 export function ThankYouPage() {
+  const navigate = useNavigate();
   return (
     <div style={pageStyle}>
       <style>{fonts}</style>
@@ -886,6 +887,9 @@ export function ThankYouPage() {
         <p style={{ color: "#64748b", fontSize: 15, lineHeight: 1.7 }}>
           Thank you for completing your assessment. Your responses have been recorded and will help us measure the impact of the Financial Literacy Program.
         </p>
+        <button onClick={() => navigate("/")} style={{ ...btnPrimary, marginTop: 28 }}>
+          Back to Home
+        </button>
       </div>
     </div>
   );
