@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@beacon/shared": ["../shared/src/index.ts"]
+    }
+  }
+}
